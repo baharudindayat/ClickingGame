@@ -1,0 +1,39 @@
+fx:controller="com.example.taa.MainController"
+
+static int widht = 720;
+static int height = 520;
+
+
+  @Override
+            public void handle(MouseEvent e) {
+            for (int i = 0; i < level; i++) {
+                if (flag[1] == 1) {
+                    Rectangle2D rect = mosquitos.get(i).getBoundary();
+                    if (e.getX() > rect.getMinX()
+                            && e.getX() < rect.getMaxX()
+                            && e.getY() > rect.getMinY()
+                            && e.getY() < rect.getMaxY()) {
+
+                        flag[i] = 0;
+                        score += 1;
+                        count += 1;
+                        index = i;
+                        opacity = 1.0;
+                        ScoreLabel.setText("Score: " + score);
+
+                        if (count == level) {
+                            count = 0;
+                            NextLevelUI.setVisible(true);
+                            MainUI.setDisable(true);
+                            if (timeline != null) {
+                                timeline.stop();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        });
+
+ mysql:mysql-connector-java:5.1.40
+
